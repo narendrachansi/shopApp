@@ -14,4 +14,4 @@ const ProductNavigator= createStackNavigator({
     }
 });
 
-export default createStackNavigator(ProductNavigator);
+export default createAppContainer(ProductNavigator);

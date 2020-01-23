@@ -1,8 +1,9 @@
 import PRODUCTS from '../../data/dummy-data';
 const initialState={
     availableProducts:PRODUCTS,
-    userProducts:PRODUCTS.filter(prod => prod.owerid==='c1')
+    userProducts:PRODUCTS.filter(prod => prod.ownerId==='c1')
 };
-const productReducer = (state=initialState,action)=> {
+export default  (state=initialState,action)=> {
     return state;
 }
+
