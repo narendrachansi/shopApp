@@ -1,23 +1,31 @@
 import React from 'react';
-import {View,Text,FlatList,StyleSheet, Image} from 'react-native';
+import {View,Text,FlatList,StyleSheet, Image, TouchableOpacity, TouchableNativeFeedback, Platform} from 'react-native';
 import DefaultButton from '../DefaultButton';
 import DefaultText from '../DefaultText';
 import Card from '../Card';
 const ProductItem = props => {
+    let TouchableCom = TouchableOpacity;
+    if(Platform.OS==='android' && Platform.Version>=21){
+        TouchableCom = TouchableNativeFeedback;
+    }
     return(
-        <Card>
-            <View style={styles.imageContainer}>
-                <Image source={{uri: props.imageUrl}} style={styles.image} />
+        <TouchableCom onPress={props.onViewDetail}>
+            <View>
+                <Card>
+                    <View style={styles.imageContainer}>
+                        <Image source={{uri: props.imageUrl}} style={styles.image} />
+                    </View>
+                    <View style={styles.details}>
+                        <DefaultText>{props.title}</DefaultText>
+                        <DefaultText>${props.price}</DefaultText>
+                    </View>
+                    <View style={styles.buttonContainer}>
+                        <DefaultButton  onPressHandler={props.onViewDetail} >View Details</DefaultButton>
+                        <DefaultButton  onPressHandler={props.onAddCart} >Add To Cart</DefaultButton>
+                    </View>
+                </Card>
             </View>
-             <View style={styles.details}>
-                <DefaultText>{props.title}</DefaultText>
-                <DefaultText>${props.price}</DefaultText>
-             </View>
-             <View style={styles.buttonContainer}>
-                <DefaultButton  onPressHandler={props.onViewDetail} >View Details</DefaultButton>
-                <DefaultButton  onPressHandler={props.onAddCart} >Add To Cart</DefaultButton>
-            </View>
-        </Card>
+        </TouchableCom>
     );
 };
 const styles=StyleSheet.create({
