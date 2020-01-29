@@ -1,5 +1,6 @@
 import {ADD_TO_CART} from '../actions/cart';
 import {REMOVE_FROM_CART} from '../actions/cart';
+import {ADD_ORDER} from '../actions/orders';
 import AddItem from '../../models/cart';
 const initialState={
     items: {},
@@ -39,6 +40,8 @@ const cartReducer = (state=initialState,action) => {
                 delete state.items[action.productId];
             }
             return state;
+        case ADD_ORDER:
+            return initialState;
         default:
             return state;
     }
