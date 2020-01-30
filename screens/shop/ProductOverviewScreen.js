@@ -5,6 +5,7 @@ import ProductItem from '../../components/shop/ProductItem';
 import * as cartActions from '../../store/actions/cart';
 import {HeaderButtons, HeaderButton, Item} from 'react-navigation-header-buttons';
 import DefaultHeaderButton from '../../components/ui/DefaultHeaderButton';
+import DefaultButton from '../../components/DefaultButton';
 const ProductOverviewScreen = props => {
     const products=useSelector(state=>state.products.availableProducts);
     const viewDetailHandler = (productId, productTitle) => {
@@ -29,9 +30,11 @@ const ProductOverviewScreen = props => {
             title={itemData.item.title} 
             price={itemData.item.price} 
             imageUrl={itemData.item.imageUrl} 
-            onViewDetail={viewDetailHandler.bind(this,itemData.item.id,itemData.item.title)}
-            onAddCart={addCartHandler.bind(this,itemData.item)}
-            />
+        >
+            <DefaultButton  onPressHandler={viewDetailHandler.bind(this,itemData.item.id,itemData.item.title)} >View Details</DefaultButton>
+            <DefaultButton  onPressHandler={addCartHandler.bind(this,itemData.item)} >Add To Cart</DefaultButton>
+        </ProductItem>
+
         } 
         />
     );

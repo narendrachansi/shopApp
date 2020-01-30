@@ -20,8 +20,7 @@ const ProductItem = props => {
                         <DefaultText>${props.price}</DefaultText>
                     </View>
                     <View style={styles.buttonContainer}>
-                        <DefaultButton  onPressHandler={props.onViewDetail} >View Details</DefaultButton>
-                        <DefaultButton  onPressHandler={props.onAddCart} >Add To Cart</DefaultButton>
+                        {props.children}
                     </View>
                 </Card>
             </View>
