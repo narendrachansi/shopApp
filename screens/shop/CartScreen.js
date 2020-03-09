@@ -23,6 +23,7 @@ const CartScreen = props => {
             sum: cartItems[key].sum,
         });
    }
+   //console.log(cartItemsArray);
     return(
         <View>
             <Card style={styles.cart}>
@@ -37,7 +38,7 @@ const CartScreen = props => {
             renderItem = {(itemData)=>{
                return <CartItem 
                showDeleteBtn
-               quantiy={itemData.item.quantiy}
+               quantity={itemData.item.quantity}
                title={itemData.item.productTitle}
                sum={itemData.item.sum}
                onDeleteHandler={()=>{dispatch(removeFromCart(itemData.item.productId))}} 

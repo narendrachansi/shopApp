@@ -8,26 +8,27 @@ const initialState={
     totalAmount: 0
 };
 const cartReducer = (state=initialState,action) => {
-    product=action.product;  
+    product=action.product; 
     let newOrUpdatedItem; 
     switch(action.type){
         case ADD_TO_CART:
+            const productPrice=parseFloat(product.price);
             if(state.items[product.id]){
                 /* Update existing  item*/
                 newOrUpdatedItem =new AddItem(
                     state.items[product.id].quantity+1,
-                    product.price,
+                    productPrice,
                     product.title,
-                    state.items[product.id].sum+product.price
+                    state.items[product.id].sum+productPrice
                 );
             }else{
                 /* Add new item  */
-                newOrUpdatedItem=new AddItem(1,product.price,product.title,product.price);
+                newOrUpdatedItem=new AddItem(1,productPrice,product.title,productPrice);
             }
             return {
                 ...state,
                 items:{...state.items,[product.id]:newOrUpdatedItem},
-                totalAmount: state.totalAmount+product.price
+                totalAmount: state.totalAmount+productPrice
             };
         case REMOVE_FROM_CART:
             const price=state.items[action.productId].productPrice;

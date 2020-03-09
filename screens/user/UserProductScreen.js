@@ -31,7 +31,7 @@ const UserProductScreen = props => {
     };
     return(
         <FlatList
-        keyExtractor={item=>item.id}
+        keyExtractor={(item,index)=>item.id.toString()}
         data={items} 
         renderItem={itemData=> <ProductItem 
             title={itemData.item.title} 
